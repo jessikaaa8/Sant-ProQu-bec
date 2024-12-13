@@ -1,0 +1,21 @@
+Ajoutez docker-compose.yml :
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/santepro
+      - JWT_SECRET=SuperSecretKey
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
